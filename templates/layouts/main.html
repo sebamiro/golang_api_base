@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;">
+    <head>
+        {{ template "metatags" . }}
+        {{ template "css" . }}
+        {{ template "js" . }}
+    </head>
+    <body class="has-background-light" style="min-height:100%;">
+        <nav class="navbar is-dark">
+            <div class="container">
+				Hello Wolrd [Dark Nav]
+            </div>
+        </nav>
+		{{ template "content" . }}
+    </body>
+</html>
+
