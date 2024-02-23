@@ -1,0 +1,35 @@
+http:
+  hostname: "localhost"
+  port: 8080
+  readTimeout: "5s"
+  writeTimeout: "10s"
+  idleTimeout: "2m"
+  tls:
+    enabled: false
+    certificate: ""
+    key: ""
+
+app:
+  name: "Gym"
+  encryptionKey: "?E(G+KbPeShVmYq3t6w9z$C&F)J@McQf"
+  timeout: "20s"
+  passwordToken:
+      expiration: "60m"
+      length: 64
+  emailVerificationTokenExpiration: "12h"
+
+database:
+  hostname: "localhost"
+  port: 5432
+  user: "admin"
+  password: "admin"
+  database: "app"
+  testDatabase: "app_test"
+
+# mail:
+#   hostname: "localhost"
+#   port: 25
+#   user: "admin"
+#   password: "admin"
+#   fromAddress: "admin@localhost"
+
