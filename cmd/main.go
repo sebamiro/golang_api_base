@@ -14,9 +14,8 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/sebamiro/Gym-FP/pkg/controller"
+	"github.com/sebamiro/Gym-FP/pkg/routes"
 	"github.com/sebamiro/Gym-FP/pkg/services"
-	"github.com/sebamiro/Gym-FP/templates"
 
 	"github.com/labstack/echo/v4"
 )
@@ -40,13 +39,7 @@ func main() {
 		}
 	}()
 
-	c.Web.GET("/", func(ctx echo.Context) error {
-		cntrl := controller.NewController(c)
-		page := controller.NewPage(ctx)
-		page.Layout = templates.LayoutMain
-		page.Name = templates.PageHome
-		return cntrl.RenderPage(ctx, page)
-	})
+	routes.BuildRouter(c)
 
 	go func() {
 		srv := http.Server{
