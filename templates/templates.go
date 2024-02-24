@@ -1,6 +1,13 @@
 package templates
 
-import "embed"
+import (
+	"embed"
+	"runtime"
+	"path"
+	"os"
+	"path/filepath"
+	"io/fs"
+)
 
 type (
 	Layout string
@@ -22,4 +29,12 @@ var templates embed.FS
 
 func Get() embed.FS {
 	return templates
+}
+
+// Local environment
+func GetOs() fs.FS {
+	_, b, _, _ := runtime.Caller(0)
+	d := path.Join(path.Dir(b))
+	p := filepath.Join(filepath.Dir(d), "templates")
+	return os.DirFS(p)
 }
