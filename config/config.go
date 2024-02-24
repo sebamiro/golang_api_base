@@ -13,6 +13,17 @@ const (
 	StaticPrefix = "files"
 )
 
+type environment string
+
+const (
+	EnvLocal      environment = "local"
+	EnvTest       environment = "test"
+	EnvDevelop    environment = "dev"
+	EnvStaging    environment = "staging"
+	EnvQA         environment = "qa"
+	EnvProduction environment = "prod"
+)
+
 type (
 	Config struct {
 		HTTP HTTPConfig
@@ -35,6 +46,7 @@ type (
 
 	AppConfig struct {
 		Name          string
+		Environment   environment
 		EncryptionKey string
 		Timeout       time.Duration
 		PasswordToken struct {

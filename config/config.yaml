@@ -11,6 +11,7 @@ http:
 
 app:
   name: "Gym"
+  environment: "local"
   encryptionKey: "?E(G+KbPeShVmYq3t6w9z$C&F)J@McQf"
   timeout: "20s"
   passwordToken:
