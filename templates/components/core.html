@@ -1,15 +1,8 @@
 {{define "metatags"}}
-    <title>{{ .AppName }}{{ if .Title }} | {{ .Title }}{{ end }}</title>
-    <link rel="icon" href="{{file "favicon.png"}}">
+    <title>Gym</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{- if .Metatags.Description}}
-        <meta name="description" content="{{.Metatags.Description}}">
-    {{- end}}
-    {{- if .Metatags.Keywords}}
-        <meta name="keywords" content="{{.Metatags.Keywords | join ", "}}">
-    {{- end}}
 {{end}}
 
 {{define "css"}}
