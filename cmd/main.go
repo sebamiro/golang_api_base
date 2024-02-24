@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"html/template"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -38,12 +39,20 @@ func main() {
 		}
 	}()
 
-	t := &Template{
-		template: template.Must(template.ParseGlob("templates/*.html")),
-	}
-	c.Web.Renderer = t
+	buf, err := c.TempalteRenderer.
+		Parse().
+		Group("page").
+		Key("home").
+		Base("main").
+		Files("layouts/main", "pages/home").
+		Directories("components").
+		Execute("")
 	c.Web.GET("/", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "index.html", map[string]interface{}{})
+		if err != nil {
+			log.Println("[ERROR]: ", err)
+			return c.HTMLBlob(http.StatusInternalServerError, []byte("Internal Server Error"))
+		}
+		return c.HTMLBlob(http.StatusOK, buf.Bytes())
 	})
 
 	go func() {

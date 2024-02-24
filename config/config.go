@@ -8,9 +8,20 @@ import (
 )
 
 const (
-	TemplateExt  = "html"
+	TemplateExt  = ".html"
 	StaticDir    = "static"
 	StaticPrefix = "files"
+)
+
+type environment string
+
+const (
+	EnvLocal      environment = "local"
+	EnvTest       environment = "test"
+	EnvDevelop    environment = "dev"
+	EnvStaging    environment = "staging"
+	EnvQA         environment = "qa"
+	EnvProduction environment = "prod"
 )
 
 type (
@@ -35,6 +46,7 @@ type (
 
 	AppConfig struct {
 		Name          string
+		Environment   environment
 		EncryptionKey string
 		Timeout       time.Duration
 		PasswordToken struct {

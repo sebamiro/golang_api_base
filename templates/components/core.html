@@ -1,0 +1,35 @@
+{{define "metatags"}}
+    <title>Gym</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{{end}}
+
+{{define "css"}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+{{end}}
+
+{{define "js"}}
+    <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+{{end}}
+
+<!-- {{define "footer"}} -->
+<!--     {{- if .CSRF}} -->
+<!--         <script> -->
+<!--             document.body.addEventListener('htmx:configRequest', function(evt)  { -->
+<!--                 if (evt.detail.verb !== "get") { -->
+<!--                     evt.detail.parameters['csrf'] = '{{.CSRF}}'; -->
+<!--                 } -->
+<!--             }) -->
+<!--         </script> -->
+<!--     {{end}} -->
+<!--     <script> -->
+<!--         document.body.addEventListener('htmx:beforeSwap', function(evt) { -->
+<!--             if (evt.detail.xhr.status >= 400){ -->
+<!--                 evt.detail.shouldSwap = true; -->
+<!--                 evt.detail.target = htmx.find("body"); -->
+<!--             } -->
+<!--         }); -->
+<!--     </script> -->
+<!-- {{end}} -->
+<!--  -->
