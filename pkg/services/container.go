@@ -8,8 +8,9 @@ import (
 )
 
 type Container struct {
-	Config *config.Config
-	Web    *echo.Echo
+	Config           *config.Config
+	Web              *echo.Echo
+	TempalteRenderer *TemplateRenderer
 	// DB
 	// Template
 }
@@ -19,7 +20,8 @@ func NewContainer() (*Container, error) {
 	if err := c.initConfig(); err != nil {
 		return nil, err
 	}
-	c.Web = echo.New()
+	c.initWeb()
+	c.initTemplateRenderer()
 	return c, nil
 }
 
@@ -31,6 +33,16 @@ func (c *Container) initConfig() error {
 	log.Printf("[TRACE] initConfig: %v\n", cfg)
 	c.Config = &cfg
 	return nil
+}
+
+func (c *Container) initWeb() {
+	log.Println("[TRACE] initWeb")
+	c.Web = echo.New()
+}
+
+func (c *Container) initTemplateRenderer() {
+	log.Println("[TRACE] initTemplateRenderer")
+	c.TempalteRenderer = NewTemplateRenderer(c.Config)
 }
 
 func (c *Container) Shutdown() error {
