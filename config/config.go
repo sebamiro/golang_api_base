@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	TemplateExt  = "html"
+	TemplateExt  = ".html"
 	StaticDir    = "static"
 	StaticPrefix = "files"
 )
