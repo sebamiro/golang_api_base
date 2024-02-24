@@ -10,12 +10,13 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
 
+	"github.com/sebamiro/Gym-FP/pkg/controller"
 	"github.com/sebamiro/Gym-FP/pkg/services"
+	"github.com/sebamiro/Gym-FP/templates"
 
 	"github.com/labstack/echo/v4"
 )
@@ -39,20 +40,12 @@ func main() {
 		}
 	}()
 
-	buf, err := c.TempalteRenderer.
-		Parse().
-		Group("page").
-		Key("home").
-		Base("main").
-		Files("layouts/main", "pages/home").
-		Directories("components").
-		Execute("")
-	c.Web.GET("/", func(c echo.Context) error {
-		if err != nil {
-			log.Println("[ERROR]: ", err)
-			return c.HTMLBlob(http.StatusInternalServerError, []byte("Internal Server Error"))
-		}
-		return c.HTMLBlob(http.StatusOK, buf.Bytes())
+	c.Web.GET("/", func(ctx echo.Context) error {
+		cntrl := controller.NewController(c)
+		page := controller.NewPage(ctx)
+		page.Layout = templates.LayoutMain
+		page.Name = templates.PageHome
+		return cntrl.RenderPage(ctx, page)
 	})
 
 	go func() {
