@@ -103,12 +103,12 @@ returns itself
 
 parses the templates and stores the in the cache
 
-return TemplateRenderer.parse(.build)
+return .renderer.parse(.build)
 
 ### Execute *Self any -> (*bytes.Buffer, error)
 
 execues template with the given data
-If its not cached, it will p[arse and cache it
+If its not cached, it will parse and cache it
 
 recives the data
 returns TemplateParsed.Execute(data)
