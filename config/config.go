@@ -2,6 +2,8 @@ package config
 
 import (
 	"log"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/spf13/viper"
@@ -75,6 +77,12 @@ type (
 	// }
 )
 
+func SwitchEnvironment(env environment) {
+	if err := os.Setenv("GYM_APP_ENVIRONMENT", string(env)); err != nil {
+		panic(err)
+	}
+}
+
 func GetConfig() (Config, error) {
 	var c Config
 	log.Println("[TRACE] GetConfig")
@@ -85,6 +93,10 @@ func GetConfig() (Config, error) {
 	viper.AddConfigPath("config")
 	viper.AddConfigPath("../config")
 	viper.AddConfigPath("../../config")
+
+	viper.SetEnvPrefix("gym")
+	viper.AutomaticEnv()
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Println("[FATAL] GetConfig: viper.ReadInConfig: ", err)
