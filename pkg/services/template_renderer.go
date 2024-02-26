@@ -72,13 +72,14 @@ func (t *TemplateRenderer) parse(build *templateBuild) (*TemplateParsed, error) 
 	switch {
 	case build.key == "":
 		return nil, errors.New("key is required")
-	case len(build.files) == 0 || len(build.directories) == 0:
+	case len(build.files) == 0 && len(build.directories) == 0:
 		return nil, errors.New("files or directories are required")
 	case build.base == "":
 		return nil, errors.New("base is required")
 	}
 
-	if tp, err = t.Load(build.group, build.key); err == nil || t.config.App.Environment == config.EnvLocal {
+	if tp, err = t.Load(build.group, build.key); err != nil || t.config.App.Environment == config.EnvLocal {
+		log.Println("[TRACE] TemplateRenderer.parse: parsing template")
 		parsed := template.New(build.base + config.TemplateExt).Funcs(t.funcMap)
 		for k, v := range build.files {
 			build.files[k] = fmt.Sprintf("%s%s", v, config.TemplateExt)
@@ -88,12 +89,13 @@ func (t *TemplateRenderer) parse(build *templateBuild) (*TemplateParsed, error) 
 		}
 		var tpl fs.FS
 		if t.config.App.Environment == config.EnvLocal {
-			tpl = templates.GetOs()
+			tpl = templates.GetOS()
 		} else {
 			tpl = templates.Get()
 		}
 		parsed, err = parsed.ParseFS(tpl, append(build.files, build.directories...)...)
 		if err != nil {
+			log.Printf("[ERROR] TemplateRenderer.parse: %s\n", err)
 			return nil, err
 		}
 		tp = &TemplateParsed{
@@ -111,10 +113,7 @@ func (t *TemplateRenderer) Load(group, key string) (*TemplateParsed, error) {
 	if !ok {
 		return nil, errors.New("uncached template")
 	}
-	templ, ok := load.(*TemplateParsed)
-	if !ok {
-		return nil, errors.New("template is not of type *TemplateParsed")
-	}
+	templ, _ := load.(*TemplateParsed)
 	return templ, nil
 }
 
@@ -164,9 +163,6 @@ func (t *templateBuilder) Execute(data any) (*bytes.Buffer, error) {
 
 func (t *TemplateParsed) Execute(data any) (*bytes.Buffer, error) {
 	log.Println("[TRACE] TemplateParsed.Execute")
-	if t.Template == nil {
-		return nil, errors.New("cannot execute nil template")
-	}
 	buf := new(bytes.Buffer)
 	if err := t.Template.ExecuteTemplate(buf, t.build.base+config.TemplateExt, data); err != nil {
 		return nil, err
