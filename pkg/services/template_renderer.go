@@ -9,9 +9,9 @@ import (
 	"log"
 	"sync"
 
-	"github.com/sebamiro/Gym-FP/config"
-	"github.com/sebamiro/Gym-FP/pkg/funcmap"
-	"github.com/sebamiro/Gym-FP/templates"
+	"github.com/sebamiro/golang_api_base/config"
+	"github.com/sebamiro/golang_api_base/pkg/funcmap"
+	"github.com/sebamiro/golang_api_base/templates"
 )
 
 type (

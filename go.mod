@@ -1,13 +1,16 @@
-module github.com/sebamiro/Gym-FP
+module github.com/sebamiro/golang_api_base
 
 go 1.21.6
 
-require github.com/labstack/echo/v4 v4.11.4
+require (
+	github.com/Masterminds/sprig v2.22.0+incompatible
+	github.com/labstack/echo/v4 v4.11.4
+	github.com/spf13/viper v1.18.2
+)
 
 require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver v1.5.0 // indirect
-	github.com/Masterminds/sprig v2.22.0+incompatible // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/google/uuid v1.4.0 // indirect
@@ -28,7 +31,6 @@ require (
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/spf13/viper v1.18.2 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect

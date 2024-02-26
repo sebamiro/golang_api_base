@@ -3,8 +3,8 @@ package routes
 import (
 	"net/http"
 
-	"github.com/sebamiro/Gym-FP/pkg/controller"
-	"github.com/sebamiro/Gym-FP/pkg/services"
+	"github.com/sebamiro/golang_api_base/pkg/controller"
+	"github.com/sebamiro/golang_api_base/pkg/services"
 
 	echow "github.com/labstack/echo/v4/middleware"
 )
@@ -27,7 +27,6 @@ func BuildRouter(c *services.Container) {
 	ctr := controller.NewController(c)
 
 	// Error handler
-
 	// Routes
 	home := home{ctr}
 	g.GET("/", home.Get).Name = routeNameHome

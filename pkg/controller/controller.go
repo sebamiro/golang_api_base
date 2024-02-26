@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/sebamiro/Gym-FP/pkg/services"
+	"github.com/sebamiro/golang_api_base/pkg/services"
 )
 
 type Controller struct {

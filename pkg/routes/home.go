@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"github.com/sebamiro/Gym-FP/pkg/controller"
-	"github.com/sebamiro/Gym-FP/templates"
+	"github.com/sebamiro/golang_api_base/pkg/controller"
+	"github.com/sebamiro/golang_api_base/templates"
 
 	"github.com/labstack/echo/v4"
 )

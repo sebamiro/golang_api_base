@@ -1,10 +1,5 @@
-# Gym-FP
+# Golang api base
 
-## Todo
+Base project template for a golang api
 
-- Think User and Profile Tables (I!)
--   Login (I!)
--   Register (I!)
--   Forgot pass (I!)
-- Responsive (I!)
-- Email module (NTI)
+Currently using Echo web framework and HTMX

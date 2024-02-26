@@ -14,8 +14,8 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/sebamiro/Gym-FP/pkg/routes"
-	"github.com/sebamiro/Gym-FP/pkg/services"
+	"github.com/sebamiro/golang_api_base/pkg/routes"
+	"github.com/sebamiro/golang_api_base/pkg/services"
 
 	"github.com/labstack/echo/v4"
 )

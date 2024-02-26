@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/sebamiro/Gym-FP/templates"
+	"github.com/sebamiro/golang_api_base/templates"
 )
 
 type Page struct {

@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/labstack/echo/v4"
-	"github.com/sebamiro/Gym-FP/config"
+	"github.com/sebamiro/golang_api_base/config"
 )
 
 type Container struct {
