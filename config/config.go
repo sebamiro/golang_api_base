@@ -78,7 +78,7 @@ type (
 )
 
 func SwitchEnvironment(env environment) {
-	if err := os.Setenv("GYM_APP_ENVIRONMENT", string(env)); err != nil {
+	if err := os.Setenv("GOLANG_APP_ENVIRONMENT", string(env)); err != nil {
 		panic(err)
 	}
 }
@@ -94,7 +94,7 @@ func GetConfig() (Config, error) {
 	viper.AddConfigPath("../config")
 	viper.AddConfigPath("../../config")
 
-	viper.SetEnvPrefix("gym")
+	viper.SetEnvPrefix("golang")
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
