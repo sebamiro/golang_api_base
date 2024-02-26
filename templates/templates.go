@@ -25,6 +25,7 @@ const (
 	PageLogin Page = "login"
 )
 
+//go:embed *
 var templates embed.FS
 
 func Get() embed.FS {
@@ -32,7 +33,7 @@ func Get() embed.FS {
 }
 
 // Local environment
-func GetOs() fs.FS {
+func GetOS() fs.FS {
 	_, b, _, _ := runtime.Caller(0)
 	d := path.Join(path.Dir(b))
 	p := filepath.Join(filepath.Dir(d), "templates")
