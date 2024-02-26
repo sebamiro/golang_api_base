@@ -28,7 +28,7 @@ func (c *Controller) RenderPage(ctx echo.Context, page Page) error {
 	if page.AppName == "" {
 		page.AppName = c.Container.Config.App.Name
 	}
-	buf, err = c.Container.TempalteRenderer.
+	buf, err = c.Container.TemplateRenderer.
 		Parse().
 		Group(templateGroup).
 		Key(string(page.Name)).

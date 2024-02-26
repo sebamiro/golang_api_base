@@ -10,7 +10,7 @@ import (
 type Container struct {
 	Config           *config.Config
 	Web              *echo.Echo
-	TempalteRenderer *TemplateRenderer
+	TemplateRenderer *TemplateRenderer
 	// DB
 	// Template
 }
@@ -42,7 +42,7 @@ func (c *Container) initWeb() {
 
 func (c *Container) initTemplateRenderer() {
 	log.Println("[TRACE] initTemplateRenderer")
-	c.TempalteRenderer = NewTemplateRenderer(c.Config)
+	c.TemplateRenderer = NewTemplateRenderer(c.Config)
 }
 
 func (c *Container) Shutdown() error {
